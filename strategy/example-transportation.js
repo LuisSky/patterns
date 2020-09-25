@@ -1,42 +1,48 @@
-
+'use strict';
 
 /* ..:: transportation system ::.. */
 
 
+// Context
+class Transportation {
+  calculation(company) {
+    return company.calculation()
+  }
+}
 
 //Strategy
-class Transportation {
-  constructor(company) {
-    this.company = company
-  }
-  calculation(package) {
-    return this.company.calculation(package)
+class CompanyStrategy {
+
+  calculation() {
+    return this.calculationTransport()
   }
 }
 
 
 // Company's implementation
-class CompanyA extends Transportation {
-  calculation(package) {
+class CompanyA extends CompanyStrategy {
+  calculationTransport() {
     //all rules for implementation
-    return 5.99
+    return "5.99"
   }
 }
 
-class CompanyB extends Transportation {
-  calculation(package) {
+class CompanyB extends CompanyStrategy {
+  calculationTransport() {
     //all rules for implementation
-    return 10.00
+    return "10.00"
   }
 }
 
-class CompanyC extends Transportation {
-  calculation(package) {
+class CompanyC extends CompanyStrategy {
+  calculationTransport() {
     //all rules for implementation
-    return 2.55
+    return "2.55"
   }
 }
 
-const company = new Transportation(new CompanyA())
+const company = new Transportation()
 
-console.log("CompanyA: " + company.calculation({ test: 10 }));
+console.log("CompanyA: " + company.calculation(new CompanyA()));
+console.log("CompanyB: " + company.calculation(new CompanyB()));
+console.log("CompanyC: " + company.calculation(new CompanyC()));
